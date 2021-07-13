@@ -1,0 +1,34 @@
+// C++ code
+//
+int state = LOW;
+int MOTION = 0;
+void setup()
+{
+  pinMode(13, OUTPUT);
+  pinMode(2, INPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  MOTION = digitalRead(2);  // read input value
+  if (MOTION == HIGH) //checking for motion
+  {
+    digitalWrite(13, HIGH);  //turn LED ON
+    if (state == LOW) 
+    {
+      Serial.println("Motion detected!");
+      state = HIGH;
+    }
+  } 
+  else 
+  {
+    digitalWrite(13, LOW); // turn LED OFF
+    if (state == HIGH)
+    {
+      Serial.println("Motion ended!");
+      state = LOW;
+    }
+  }
+  
+}
